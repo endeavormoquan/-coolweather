@@ -37,7 +37,7 @@ public class Utility {
         return false;
     }
 
-    public static boolean handleCityResponse(String response){
+    public static boolean handleCityResponse(String response,int provincedId){
         if (!TextUtils.isEmpty(response)){
             try{
                 JSONArray allCities = new JSONArray(response);
@@ -46,6 +46,7 @@ public class Utility {
                     City city = new City();
                     city.setCityCode(cityObject.getInt("id"));
                     city.setCityName(cityObject.getString("name"));
+                    city.setProvinceId(provincedId);
                     city.save();
                 }
                 return true;
@@ -67,6 +68,7 @@ public class Utility {
                     county.setWeatherId(countyObject.getString("weather_id"));
                     county.setCountyName(countyObject.getString("name"));
                     county.setCityId(cityId);
+                    county.save();
                 }
                 return true;
             }
